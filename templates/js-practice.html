@@ -316,7 +316,7 @@
     $('#number-guessed').attr('disabled', false);
     $('#try-this-number').attr('disabled', false);
     //set number guessing field's min = 1 and max - 100
-    $('#number-guessed').attr('min', '1').attr('max', '100');
+    $('#number-guessed').attr('min', '1').attr('max', '100').attr('required', true);
     // Ask player to guess.
     $('#number-guessing-msg').html("Guess a number between 1 and 100.");
 
@@ -339,6 +339,7 @@
                 $('#number-guessing-msg').empty();
                 $('#number-guessing-msg').append("WOW, you got it!");
                 // Clear out the guess input field, for the new game.
+                $('#number-guessed').attr('required', false);
                 $('#number-guessed').val('');
                 // Disable game form.
                 $('#number-guessed').attr('disabled', true);
@@ -387,6 +388,19 @@
     var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
 
   // put the rest of your code here
+  $('#make-prime-circles').on('click', function (evt) {
+    // Prevent browser default.
+    evt.preventDefault();
+
+    var primeArray = [2]
+    // ZOMG I don't know how to easily calculate prime numbers!! Math much??
+    // NOT TIME to work out the logic of prime, plus JS...return if time?
+    // while (PRIME_COLORS.length > primeArray.length) {
+    //   // for MAGIC PRIME NUMBER CALC HERE!!
+        // ADD EACH RESULT TO PRIME ARRAY & DIV...
+    // } 
+
+  });
 </script>
 
 
@@ -508,6 +522,31 @@
   }
 
   // put your code here
+  // Event handler = FIRST DRAFT, DECIDED TO COMBINE w/LISTENER, BELOW !!!!
+  // function launchAttack (evt) {
+  //     // Prevent browser default.
+  //     evt.preventDefault();
+      
+  //     var formInput = {"attack-target": $("t-rex-target").val()};
+  //     // console.log(formInput);
+
+  //     $.post("/t-rex-attack.json",
+  //           formInput,
+  //           showTRexResults);
+  // }
+
+  // Event listener & event hadler w/anonymous function
+  $("#t-rex-form").on("submit", function (evt) {
+     // Prevent browser default.
+      evt.preventDefault();
+
+      var formInput = {"attack-target": $("#t-rex-target").val()};
+      // console.dir(formInput)
+
+      $.post("/t-rex-attack.json",
+             formInput,
+             showTRexResults);     
+  });
 
 </script>
 
